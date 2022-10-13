@@ -258,7 +258,7 @@ impl Session {
                 info!("Please support Spotify and your artists and sign up for a premium account.");
 
                 // TODO: logout instead of exiting
-                exit(1);
+                //exit(1);
             }
         }
     }
