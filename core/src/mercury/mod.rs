@@ -231,8 +231,8 @@ impl MercuryManager {
         let header = protocol::mercury::Header::parse_from_bytes(&header_data)?;
 
         let response = MercuryResponse {
-            uri: header.get_uri().to_string(),
-            status_code: header.get_status_code(),
+            uri: header.uri().to_string(),
+            status_code: header.status_code(),
             payload: pending.parts,
         };
 
@@ -263,7 +263,7 @@ impl MercuryManager {
             let mut found = false;
 
             self.lock(|inner| {
-                inner.subscriptions.retain(|&(ref prefix, ref sub)| {
+                inner.subscriptions.retain(|(prefix, sub)| {
                     if encoded_uri.starts_with(prefix) {
                         found = true;
 
